@@ -61,8 +61,8 @@ pWins = 0
 cWins = 0
 playing = True
 while playing:
-    player = receivePlay()
     computer = random.choice(['rock', 'paper', 'scissors'])
+    player = receivePlay()
     print("Computer plays " + computer)
     winner = wins(player, computer)
 
