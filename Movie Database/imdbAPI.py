@@ -23,7 +23,7 @@ def getReleaseDate(text):
 
 
 def convertToString(tuple):
-    string = "('" + tuple[0] + "', " + str(tuple[1]) + ", '" + tuple[2] + "')"
+    string = '("' + tuple[0] + '", ' + str(tuple[1]) + ", '" + tuple[2] + "')"
     print(string)
     return string
 

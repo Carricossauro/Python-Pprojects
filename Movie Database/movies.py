@@ -16,7 +16,8 @@ def main():
         while 1:
             operation = input("Operation: ").lower()
             if operation == 'add':
-                addMovie(cursor)
+                movie = input("Movie name: ")
+                addMovie(cursor, movie)
             elif operation == 'check':
                 os.system('clear')
                 checkMovies(cursor)
@@ -38,16 +39,13 @@ def main():
         print("Program failed : " + str(error))
 
 
-def addMovie(cursor):
-    movie = input("Movie name: ")
+def addMovie(cursor, movie):
     try:
         cursor.execute(insert + getInfo(movie))
     except sqlite3.Error as error:
         print("Attempt to add movie has failed: " + str(error))
-        addMovieManual(cursor)
     except Exception as error:
         print("Attempt to add movie has failed: " + str(error))
-        addMovieManual(cursor)
     else:
         print("Movie successfully added")
 
