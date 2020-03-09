@@ -1,0 +1,8 @@
+#!/bin/bash
+# Run API
+
+truncate -s 0 nohup.out
+echo "nohup.out cleared. Server will now start."
+echo "-----------------------------------------"
+nohup python3 server.py &
+echo "API Server running. Get requests can now be made."

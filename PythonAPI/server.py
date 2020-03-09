@@ -8,6 +8,7 @@ db = create_engine('mysql://carricossauro:admin@localhost/PythonAPI')
 app = Flask(__name__)
 api = Api(app)
 con = db.connect()
+app.config["DEBUG"] = True
 
 
 @app.route('/userids', methods=['GET'])
@@ -21,7 +22,7 @@ def getIDs():
 
 @app.route('/users', methods=['GET'])
 def getUsers():
-    query = con.execute("SELECT username FROM PythonTable")
+    query = con.execute("SELECT username, email, id FROM PythonTable")
     return jsonify([dict(zip(tuple(query.keys()), i)) for i in query.cursor])
 
 
@@ -30,7 +31,7 @@ def findUser():
     if 'username' in request.args:
         username = request.args['username']
     else:
-        return "Error: No id field provided. Please specify an id."
+        return "Error: No username field provided. Please specify a username."
     query = con.execute('SELECT username FROM PythonTable WHERE username="' + username + '"')
     return jsonify([dict(zip(tuple(query.keys()), i)) for i in query.cursor])
 
